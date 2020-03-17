@@ -1,16 +1,10 @@
 package ImageHoster.repository;
 
-import java.util.List;
-
+import ImageHoster.model.Comment;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceUnit;
-import javax.persistence.TypedQuery;
-
-import ImageHoster.model.Comment;
-import ImageHoster.model.Image;
 
 import org.springframework.stereotype.Repository;
 
@@ -39,20 +33,5 @@ public class CommentRepository {
             transaction.rollback();
         }
         return comment;
-    }
-	
-	//The method creates an instance of EntityManager
-    //Executes JPQL query to fetch the comments from the database with corresponding image
-    //Returns the comments in case the comments are found in the database
-    //Returns null if no comments are found in the database
-	public List<Comment> getCommentsByImage(Image image) {
-        EntityManager em = emf.createEntityManager();
-        try {
-        	TypedQuery<Comment> typedQuery = em.createQuery("SELECT c from Comment c where c.image =:image", Comment.class).setParameter("image", image);
-        	List<Comment> resultList = typedQuery.getResultList();
-            return resultList;
-        } catch (NoResultException nre) {
-            return null;
-        }
     }
 }

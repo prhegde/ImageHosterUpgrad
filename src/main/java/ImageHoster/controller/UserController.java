@@ -45,9 +45,13 @@ public class UserController {
     public String registerUser(User user, Model model) {
     	String password = user.getPassword();
     	if(userService.isPasswordValid(password)) {
+    		//This block will represent the scenario where the Password used to register is a VALID one as per given guidelines.
+    		
     		userService.registerUser(user);
     		return "redirect:/users/login";
     	} else {
+    		//This block will represent the scenario where the Password used to register is a INVALID one as per given guidelines.
+    		
     		user = new User();
     		UserProfile profile = new UserProfile();
             user.setProfile(profile);

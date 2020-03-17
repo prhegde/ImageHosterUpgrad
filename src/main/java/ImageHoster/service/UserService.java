@@ -32,6 +32,7 @@ public class UserService {
         }
     }
     
+    //Method to return boolean status if the Password used to register is a VALID one or not
     public boolean isPasswordValid(String password) {
     	if (is_Valid_Password(password)) {
     		return true;
@@ -40,6 +41,7 @@ public class UserService {
         }
     }
 
+    //Method to check if the Password used to register is a VALID one or not
     public static boolean is_Valid_Password(String password) {
         int charCount = 0;
         int numCount = 0;
@@ -55,15 +57,18 @@ public class UserService {
         return (charCount >= 1 && numCount >= 1 && specialCharCount >= 1);
     }
 
+    //Method to check if the character is a letter
     public static boolean is_Letter(char ch) {
         ch = Character.toUpperCase(ch);
         return (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z');
     }
     
+    //Method to check if the character is a numeral
     public static boolean is_Numeric(char ch) {
         return (ch >= '0' && ch <= '9');
     }
     
+    //Method to check if the character is a special character
     public static boolean is_SpecialCharacter(char ch) {
         return (!is_Letter(ch) && !is_Numeric(ch));
     }
