@@ -53,6 +53,11 @@ public class ImageController {
         Image image = imageService.getImage(imageId);
         model.addAttribute("image", image);
         model.addAttribute("tags", image.getTags());
+        
+        //Addition of new comments associated with a particular image into the model
+        if(image.getComments() != null && image.getComments().size() > 0)
+        	model.addAttribute("comments", image.getComments());
+        
         return "images/image";
     }
 
